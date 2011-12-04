@@ -272,7 +272,7 @@ test("child and adjacent", function() {
 });
 
 test("attributes", function() {
-	expect(45);
+	expect(46);
 
 	t( "Attribute Exists", "a[title]", ["google"] );
 	t( "Attribute Exists", "*[title]", ["google"] );
@@ -324,6 +324,7 @@ test("attributes", function() {
 
 	t("Empty values", "#select1 option[value='']", ["option1a"]);
 	t("Empty values", "#select1 option[value!='']", ["option1b","option1c","option1d"]);
+	t("Empty values", "#select1 option[empty-attr]", ["option1a"]);
 
 	t("Select options via :selected", "#select1 option:selected", ["option1a"] );
 	t("Select options via :selected", "#select2 option:selected", ["option2d"] );

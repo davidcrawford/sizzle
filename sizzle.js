@@ -394,6 +394,12 @@ var Expr = Sizzle.selectors = {
 		},
 		type: function( elem ) {
 			return elem.getAttribute( "type" );
+		},
+		htmlFor: function( elem ) {
+			return elem[ "htmlFor" ];
+		},
+		className: function( elem ) {
+			return elem[ "className" ];
 		}
 	},
 
@@ -856,8 +862,6 @@ var Expr = Sizzle.selectors = {
 					Sizzle.attr( elem, name ) :
 					Expr.attrHandle[ name ] ?
 					Expr.attrHandle[ name ]( elem ) :
-					elem[ name ] != null ?
-						elem[ name ] :
 						elem.getAttribute( name ),
 				value = result + "",
 				type = match[2],
@@ -873,8 +877,6 @@ var Expr = Sizzle.selectors = {
 				value.indexOf(check) >= 0 :
 				type === "~=" ?
 				(" " + value + " ").indexOf(check) >= 0 :
-				!check ?
-				value && result !== false :
 				type === "!=" ?
 				value !== check :
 				type === "^=" ?
@@ -883,6 +885,8 @@ var Expr = Sizzle.selectors = {
 				value.substr(value.length - check.length) === check :
 				type === "|=" ?
 				value === check || value.substr(0, check.length + 1) === check + "-" :
+				!check ?
+				(value && result) !== false :
 				false;
 		},
 
